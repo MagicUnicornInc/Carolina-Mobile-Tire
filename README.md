@@ -19,37 +19,83 @@ A modern, responsive website for Carolina Mobile Tire, showcasing mobile tire se
 
 ### Key Pages
 
-#### Services Overview
-![Services](screenshots/Services.png)
-
-#### Special Offers
-![Offers](screenshots/Offers.png)
-
-#### About Us
-![About](screenshots/About.png)
-
-#### FAQ Section
-![FAQ](screenshots/FAQ.png)
-
-#### Contact Information
-![Contact](screenshots/Contact.png)
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <strong>Services Overview</strong><br>
+      <a href="screenshots/Services.png">
+        <img src="screenshots/Services.png" alt="Services" width="300">
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <strong>Special Offers</strong><br>
+      <a href="screenshots/Offers.png">
+        <img src="screenshots/Offers.png" alt="Offers" width="300">
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <strong>About Us</strong><br>
+      <a href="screenshots/About.png">
+        <img src="screenshots/About.png" alt="About" width="300">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>FAQ Section</strong><br>
+      <a href="screenshots/FAQ.png">
+        <img src="screenshots/FAQ.png" alt="FAQ" width="300">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <strong>Contact Information</strong><br>
+      <a href="screenshots/Contact.png">
+        <img src="screenshots/Contact.png" alt="Contact" width="300">
+      </a>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ### Service Locations
 
-#### Charleston, SC
-![Charleston Location](screenshots/Charleston-Location.png)
-
-#### Knoxville, TN
-![Knoxville Location](screenshots/Knoxville-Location.png)
-
-#### Powell, TN
-![Powell Location](screenshots/Powell-Tn-Location.png)
-
-#### Lenoir City, TN
-![Lenoir City Location](screenshots/Lenoir-City-Tn-Location.png)
-
-#### Rocky Mount, NC
-![Rocky Mount Location](screenshots/Rocky-Mount-NC-Location.png)
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <strong>Charleston, SC</strong><br>
+      <a href="screenshots/Charleston-Location.png">
+        <img src="screenshots/Charleston-Location.png" alt="Charleston Location" width="250">
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <strong>Knoxville, TN</strong><br>
+      <a href="screenshots/Knoxville-Location.png">
+        <img src="screenshots/Knoxville-Location.png" alt="Knoxville Location" width="250">
+      </a>
+    </td>
+    <td align="center" width="33%">
+      <strong>Powell, TN</strong><br>
+      <a href="screenshots/Powell-Tn-Location.png">
+        <img src="screenshots/Powell-Tn-Location.png" alt="Powell Location" width="250">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Lenoir City, TN</strong><br>
+      <a href="screenshots/Lenoir-City-Tn-Location.png">
+        <img src="screenshots/Lenoir-City-Tn-Location.png" alt="Lenoir City Location" width="250">
+      </a>
+    </td>
+    <td align="center" width="50%">
+      <strong>Rocky Mount, NC</strong><br>
+      <a href="screenshots/Rocky-Mount-NC-Location.png">
+        <img src="screenshots/Rocky-Mount-NC-Location.png" alt="Rocky Mount Location" width="250">
+      </a>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ## 🛠 Tech Stack
 
