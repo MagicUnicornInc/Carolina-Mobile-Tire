@@ -123,6 +123,31 @@ Visit `http://localhost:7100` to view the website.
 
 ### Docker Deployment (Recommended for Production)
 
+#### 🚀 Automated Deployment Script (Recommended)
+
+Use the interactive deployment script for easy setup with automatic port detection:
+
+```bash
+# Make script executable (first time only)
+chmod +x deploy.sh
+
+# Run interactive deployment
+./deploy.sh
+
+# Or quick deploy with auto-detected port
+./deploy.sh --quick
+```
+
+**Features of deploy.sh:**
+- 🔍 **Automatic port detection** - Finds next available port if default is in use
+- 🎯 **Interactive setup** - Choose your own port and container name
+- 📊 **Container management** - Start, stop, restart, view logs, check status
+- 💾 **Backup functionality** - Create backups of your website files
+- 🔄 **Update from GitHub** - Pull latest changes and redeploy
+- 🏃 **Quick deploy mode** - One-command deployment with `--quick`
+
+#### Manual Docker Deployment
+
 ```bash
 # Build and run with Docker Compose
 docker-compose up -d
@@ -134,7 +159,7 @@ docker-compose logs -f
 docker-compose down
 ```
 
-The website will be available at `http://localhost:7100`.
+The website will be available at `http://localhost:7100` (or your selected port).
 
 ## 📁 Project Structure
 
@@ -167,6 +192,7 @@ carolina-tire-website/
 │   ├── sitemap.xml       # SEO sitemap
 │   └── robots.txt        # SEO robots file
 ├── screenshots/           # Website screenshots
+├── deploy.sh             # Automated deployment script
 ├── Dockerfile            # Docker configuration
 ├── docker-compose.yml    # Docker Compose setup
 ├── nginx.conf            # Nginx configuration
