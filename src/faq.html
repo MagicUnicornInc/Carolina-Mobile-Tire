@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Carolina Tire | Frequently Asked Questions</title>
+    <meta name="description" content="Find answers to common questions about Carolina Tire's services, pricing, mobile tire service, warranties, and more. Serving the Southeast for decades.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* FAQ Specific Styles */
+        #faq-hero {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            padding: 6rem 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #faq-hero::before {
+            content: '?';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            right: -50px;
+            top: -50px;
+            transform: rotate(-15deg);
+        }
+
+        .faq-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .faq-hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .faq-categories {
+            padding: 4rem 1rem;
+            background: #f8f9fa;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            background: white;
+            border: 2px solid #dee2e6;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .category-tab:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, #f0c000 0%, #d9ab00 100%);
+            color: #1a1a2e;
+            border-color: #f0c000;
+        }
+
+        .faq-section {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question.active {
+            background: linear-gradient(135deg, #343a40 0%, #212529 100%);
+            color: white;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #6c757d;
+            line-height: 1.8;
+        }
+
+        .faq-cta {
+            background: linear-gradient(135deg, #f0c000 0%, #d9ab00 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .faq-cta h2 {
+            color: #1a1a2e;
+            margin-bottom: 1rem;
+        }
+
+        .faq-cta p {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .faq-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto;
+            max-width: 800px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f0c000;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <h1>Carolina Tire</h1>
+            </div>
+            <p>Your Questions Answered</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="offers.html">Offers</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section id="faq-hero">
+            <div class="faq-hero-content">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about our services</p>
+                <div class="faq-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">70+</span>
+                        <span class="stat-label">Years of Service</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Emergency Service</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Locations</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-categories">
+            <div class="container">
+                <h2>Browse by Category</h2>
+                <div class="category-tabs">
+                    <button class="category-tab active" onclick="showCategory('general')">General</button>
+                    <button class="category-tab" onclick="showCategory('mobile')">Mobile Service</button>
+                    <button class="category-tab" onclick="showCategory('shop')">Shop Service</button>
+                    <button class="category-tab" onclick="showCategory('pricing')">Pricing</button>
+                    <button class="category-tab" onclick="showCategory('emergency')">Emergency</button>
+                </div>
+
+                <!-- General Questions -->
+                <div class="faq-section active" id="general">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What areas does Carolina Tire serve?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We proudly serve multiple locations across the Southeast. Our mobile tire service is available in Charleston, SC and Knoxville, TN. We have physical shop locations in Powell, TN, Lenoir City, TN, and Rocky Mount, NC. Each location offers a unique set of services tailored to meet local needs.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What brands of tires do you carry?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We stock a comprehensive selection of major tire brands including Michelin, Goodyear, Bridgestone, Continental, BFGoodrich, and many more. We also offer quality inspected used tires for budget-conscious customers. Our experts will help you find the perfect tire for your vehicle, driving style, and budget.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you offer warranties on your services?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We stand behind our work with comprehensive warranties. All new tires come with manufacturer warranties, and we offer additional road hazard protection. Our labor is backed by our service guarantee. Specific warranty terms vary by service and location - please ask our technicians for complete details.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How long have you been in business?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Carolina Tire has been serving the Southeast for decades. With decades of experience, we've built our reputation on honest work, fair prices, and exceptional customer service. We're a family-owned business that has grown from a single location to multiple shops and mobile service units.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Service Questions -->
+                <div class="faq-section" id="mobile">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How does mobile tire service work?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our mobile tire service is simple and convenient. You call us or book online, choose a time and location that works for you, and our fully equipped service van comes to you. Our certified technician will perform the tire service on-site using professional equipment. You can be at home, work, or even stranded on the roadside - we come to you!</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What services can you perform mobile?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our mobile units can handle tire installation, tire repairs, tire rotation, flat tire fixes, and emergency roadside assistance. We carry state-of-the-art equipment for mounting, balancing, and repairing tires on-site. For more complex automotive repairs, we'll recommend visiting one of our shop locations.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is mobile service more expensive?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our mobile service is competitively priced with a small convenience fee. When you factor in the time and gas you save by not driving to a shop and waiting, many customers find it's actually more economical. We provide upfront pricing with no hidden fees.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What areas do you cover for mobile service?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our mobile tire service currently operates in Charleston, SC and Knoxville, TN, covering these cities and surrounding areas within a 25-mile radius. We're constantly expanding our service areas, so please call to check if we can reach your location.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Service Questions -->
+                <div class="faq-section" id="shop">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do I need an appointment for shop service?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While we welcome walk-ins, we recommend scheduling an appointment to minimize your wait time. Appointments ensure we have the right technicians and parts ready for your service. For emergencies, we always try to accommodate immediate needs.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What automotive services do you offer beyond tires?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>At our Powell, TN and Rocky Mount, NC locations, we offer comprehensive automotive services including brake repair, oil changes, engine diagnostics, transmission service, A/C repair, and more. Our technicians, including ASE Certified Technicians Available, can handle most automotive repair needs.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How long does a typical tire service take?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Service times vary by type: Tire rotation takes about 30 minutes, mounting and balancing new tires takes 45-60 minutes for a set of four, and tire repair typically takes 30-45 minutes. We'll provide an accurate time estimate when you arrive.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you work on commercial vehicles?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! We service commercial vehicles including work trucks, vans, and light-duty commercial vehicles. We understand that downtime costs money, so we prioritize getting commercial customers back on the road quickly. Please call ahead for commercial service to ensure we have the right equipment and tires in stock.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Questions -->
+                <div class="faq-section" id="pricing">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What payment methods do you accept?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept cash, all major credit cards (Visa, MasterCard, American Express, Discover), debit cards, and checks. For commercial accounts, we offer net payment terms. Our mobile service units are equipped with secure card readers for your convenience.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you offer financing options?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer financing options for qualifying customers through our partner lenders. This can help spread the cost of new tires or major repairs over time. Ask our service advisors about current financing promotions and terms.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you price match competitors?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We strive to offer competitive pricing on all our products and services. We're happy to discuss pricing options that work within your budget while maintaining our high service standards.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Are there any hidden fees?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely not! We believe in transparent pricing. All costs including parts, labor, disposal fees, and taxes will be clearly explained before we begin any work. You'll always approve the final price before we proceed with service.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Questions -->
+                <div class="faq-section" id="emergency">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How quickly can you respond to emergencies?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our 24/7 emergency service typically responds within 30-60 minutes, depending on your location and current demand. We prioritize emergencies and dangerous situations. During peak times or severe weather, response times may be longer, but we'll keep you informed of our estimated arrival.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What constitutes a tire emergency?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tire emergencies include blowouts, severe punctures, sidewall damage, or any tire condition that makes driving unsafe. If you're stranded on the roadside, have multiple flat tires, or feel unsafe driving on your current tires, that's an emergency. When in doubt, call us - we'll help assess the situation.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Do you offer towing services?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we offer towing services in the Knoxville, TN area. If your vehicle needs more than tire service or isn't safe to drive, we can tow it to one of our shop locations for comprehensive repairs. Towing fees vary by distance.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>Is emergency service available on holidays?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes! Our emergency roadside assistance operates 24/7/365, including all holidays. We understand that tire problems don't take holidays, and neither do we. Our emergency crews are always ready to help get you back on the road safely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-cta">
+            <div class="container">
+                <h2>Still Have Questions?</h2>
+                <p>Our friendly team is here to help with any questions not covered here</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="cta-button primary">Contact Us</a>
+                    <a href="tel:1-800-TIRE-HELP" class="cta-button secondary">Call Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #343a40; color: #ffffff; padding: 3rem 1rem; text-align: center;">
+        <div class="footer-cta">
+            <h2>Ready to Experience the Carolina Tire Difference?</h2>
+            <p>Schedule your service today and join thousands of satisfied customers</p>
+            <a href="contact.html" class="cta-button">Get Started Now</a>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 Carolina Tire. All rights reserved. | Serving the Southeast with Pride for Decades</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = element.classList.contains('active');
+            
+            // Close all other FAQs in this section
+            const section = element.closest('.faq-section');
+            section.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                q.nextElementSibling.classList.remove('active');
+            });
+            
+            // Toggle current FAQ
+            if (!isActive) {
+                element.classList.add('active');
+                answer.classList.add('active');
+            }
+        }
+
+        // Category switching
+        function showCategory(category) {
+            // Hide all sections
+            document.querySelectorAll('.faq-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(category).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+    <script src="icons.js"></script>
+</body>
+</html>

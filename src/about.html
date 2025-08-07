@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Carolina Tire | Our Story</title>
+    <meta name="description" content="Learn about Carolina Tire's history, our mission, values, and commitment to exceptional automotive service across the Southeast.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* About Page Specific Styles */
+        #about-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            padding: 6rem 1rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            animation: rotate 30s linear infinite;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .company-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin: 3rem auto;
+            max-width: 600px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #f0c000;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* History Timeline */
+        .history-section {
+            padding: 4rem 1rem;
+            background: #f8f9fa;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(135deg, #f0c000 0%, #d9ab00 100%);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .timeline-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #f0c000;
+            border: 4px solid #fff;
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -17px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -17px;
+        }
+
+        .timeline-content {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f0c000;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* Mission & Values */
+        .mission-values {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .mv-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mv-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 4rem 1rem;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .member-photo {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .member-info {
+            padding: 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 0.85rem;
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        /* Community Section */
+        .community-section {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #f0c000 0%, #d9ab00 100%);
+        }
+
+        .community-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .community-content h2 {
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .community-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .community-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        /* Why Choose Us */
+        .why-us-section {
+            padding: 4rem 1rem;
+            background: #fff;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(135deg, #f0c000 0%, #d9ab00 100%);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .why-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .why-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .why-icon {
+            font-size: 2.5rem;
+            color: #f0c000;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 19px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                left: 19px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <h1>Carolina Tire</h1>
+            </div>
+            <p>Our Story of Service & Excellence</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="offers.html">Offers</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section id="about-hero">
+            <div class="about-hero-content">
+                <h2>Decades of Trusted Service</h2>
+                <p>Building relationships one mile at a time</p>
+                <div class="company-stats">
+                    <div class="stat">
+                        <span class="stat-number">Decades</span>
+                        <span class="stat-label">Of Service</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Locations</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Happy Customers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Emergency Service</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <div class="container">
+                <h2>Our Journey Through Time</h2>
+                <p style="text-align: center; color: #6c757d; margin-bottom: 3rem;">From a single shop to a regional leader in automotive services</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">The Beginning</div>
+                            <div class="timeline-title">Our Foundation</div>
+                            <div class="timeline-description">Carolina Tire opens its first location in Rocky Mount, NC with a commitment to honest work and fair prices.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1975</div>
+                            <div class="timeline-title">Expansion Era</div>
+                            <div class="timeline-description">Growing beyond tires, we begin offering comprehensive automotive services to better serve our customers.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">1990</div>
+                            <div class="timeline-title">Tennessee Expansion</div>
+                            <div class="timeline-description">We expand into Tennessee, opening locations in Knoxville, Powell, and Lenoir City.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2010</div>
+                            <div class="timeline-title">South Carolina Arrival</div>
+                            <div class="timeline-description">Carolina Tire enters South Carolina, bringing our services to Charleston and the Lowcountry.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">2020</div>
+                            <div class="timeline-title">Mobile Innovation</div>
+                            <div class="timeline-description">Launch of our revolutionary mobile tire service, bringing convenience directly to customers' locations.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">Today</div>
+                            <div class="timeline-title">Future Forward</div>
+                            <div class="timeline-description">Continuing our legacy while embracing new technologies and expanding our mobile services.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-values">
+            <div class="container">
+                <h2>Our Mission & Values</h2>
+                <p style="text-align: center; margin-bottom: 3rem;">The principles that drive us forward every day</p>
+                
+                <div class="mv-grid">
+                    <div class="mv-card">
+                        <span class="mv-icon">🎯</span>
+                        <h3>Our Mission</h3>
+                        <p>To provide exceptional tire and automotive services with unmatched convenience, building lasting relationships through trust, expertise, and a commitment to keeping our customers safely on the road.</p>
+                    </div>
+                    
+                    <div class="mv-card">
+                        <span class="mv-icon">💎</span>
+                        <h3>Core Values</h3>
+                        <p>Integrity in every interaction, excellence in every service, innovation in our approach, and community in our hearts. These values guide every decision we make.</p>
+                    </div>
+                    
+                    <div class="mv-card">
+                        <span class="mv-icon">🔮</span>
+                        <h3>Our Vision</h3>
+                        <p>To be the Southeast's most trusted and innovative automotive service provider, setting the standard for convenience, quality, and customer care in the industry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2>Meet Our Leadership Team</h2>
+                <p style="text-align: center; color: #6c757d; margin-bottom: 3rem;">Dedicated professionals committed to your satisfaction</p>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">👨‍💼</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Robert Thompson</h3>
+                            <p class="member-role">Chief Executive Officer</p>
+                            <p class="member-bio">With over 30 years in the automotive industry, Robert leads Carolina Tire with a vision for innovation and customer excellence.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">👩‍💼</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Sarah Mitchell</h3>
+                            <p class="member-role">Chief Operations Officer</p>
+                            <p class="member-bio">Sarah oversees our multi-state operations, ensuring consistent quality and service across all Carolina Tire locations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">👨‍🔧</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Michael Chen</h3>
+                            <p class="member-role">Director of Mobile Services</p>
+                            <p class="member-bio">Michael pioneered our mobile tire service program, bringing convenience and innovation to roadside assistance.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-photo">👩‍💻</div>
+                        <div class="member-info">
+                            <h3 class="member-name">Jennifer Davis</h3>
+                            <p class="member-role">Customer Experience Director</p>
+                            <p class="member-bio">Jennifer ensures every customer interaction exceeds expectations, from first contact to service completion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="why-us-section">
+            <div class="container">
+                <h2>Why Choose Carolina Tire?</h2>
+                <p style="text-align: center; color: #6c757d; margin-bottom: 3rem;">Experience the difference that sets us apart</p>
+                
+                <div class="why-grid">
+                    <div class="why-card">
+                        <span class="why-icon">⭐</span>
+                        <h3>Family-Owned Values</h3>
+                        <p>As a family-owned business, we treat every customer like family. Your satisfaction isn't just our goal—it's our promise.</p>
+                    </div>
+                    
+                    <div class="why-card">
+                        <span class="why-icon">🛡️</span>
+                        <h3>Trusted Expertise</h3>
+                        <p>Our technicians, including ASE Certified Technicians Available, bring decades of combined experience, ensuring your vehicle receives the best care possible.</p>
+                    </div>
+                    
+                    <div class="why-card">
+                        <span class="why-icon">🚀</span>
+                        <h3>Innovation Leaders</h3>
+                        <p>From mobile tire services to cutting-edge diagnostics, we continuously innovate to provide unmatched convenience.</p>
+                    </div>
+                    
+                    <div class="why-card">
+                        <span class="why-icon">💰</span>
+                        <h3>Transparent Pricing</h3>
+                        <p>No surprises, no hidden fees. We believe in honest, upfront pricing for all our services.</p>
+                    </div>
+                    
+                    <div class="why-card">
+                        <span class="why-icon">🕐</span>
+                        <h3>Always Available</h3>
+                        <p>With 24/7 emergency services, we're here when you need us most, day or night, rain or shine.</p>
+                    </div>
+                    
+                    <div class="why-card">
+                        <span class="why-icon">🏆</span>
+                        <h3>Quality Guarantee</h3>
+                        <p>We stand behind our work with comprehensive warranties and a commitment to getting it right the first time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #343a40; color: #ffffff; padding: 3rem 1rem; text-align: center;">
+        <div class="footer-cta">
+            <h2>Join the Carolina Tire Family</h2>
+            <p>Experience service that goes the extra mile</p>
+            <a href="contact.html" class="cta-button">Contact Us Today</a>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 Carolina Tire. All rights reserved. | Serving the Southeast with Pride for Decades</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Animate timeline items on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all timeline items
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Animate stats on scroll
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.animated) {
+                    entry.target.animated = true;
+                    const target = entry.target;
+                    const value = parseInt(target.textContent.replace(/\D/g, ''));
+                    if (!isNaN(value)) {
+                        animateValue(target, 0, value, 2000);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            if (stat.textContent.includes('100K')) {
+                stat.dataset.suffix = 'K+';
+                stat.textContent = '100';
+            }
+            statsObserver.observe(stat);
+        });
+    </script>
+    <script src="icons.js"></script>
+</body>
+</html>

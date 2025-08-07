@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  carolina-tire-web:
+    build: .
+    container_name: carolina-tire-website
+    ports:
+      - "7100:7100"
+    restart: unless-stopped
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    networks:
+      - carolina-tire-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:7100/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  carolina-tire-network:
+    driver: bridge

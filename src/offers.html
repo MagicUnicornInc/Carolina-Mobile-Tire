@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers & Coupons | Carolina Tire - Save on Tires & Service</title>
+    <meta name="description" content="Save money on tires and auto services with Carolina Tire's special offers and coupons. Online booking discounts, seasonal promotions, and exclusive deals.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .offers-hero {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.95) 0%, rgba(211, 84, 0, 0.95) 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .offers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .featured-offer {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-offer::before {
+            content: 'FEATURED';
+            position: absolute;
+            top: 20px;
+            right: -40px;
+            background: #e74c3c;
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .featured-offer h2 {
+            color: #e65100;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .savings-amount {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 1rem 0;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .offer-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .offer-header.premium {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+        }
+
+        .offer-header.seasonal {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .offer-type {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .offer-title {
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .offer-body {
+            padding: 2rem;
+        }
+
+        .offer-discount {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .discount-amount {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #e74c3c;
+            line-height: 1;
+        }
+
+        .discount-text {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .offer-details {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .offer-details li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .offer-code {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .code-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .code-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+
+        .copy-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #2980b9;
+        }
+
+        .copy-button.copied {
+            background: #27ae60;
+        }
+
+        .offer-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .offer-button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .offer-button.primary {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .offer-button.primary:hover {
+            background: #c0392b;
+        }
+
+        .offer-button.secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .offer-button.secondary:hover {
+            background: #bdc3c7;
+        }
+
+        .expiration {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .loyalty-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            padding: 3rem 1rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .loyalty-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .loyalty-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .tier-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tier-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-benefits {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .promo-banner h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .promo-banner p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-offer h2 {
+                font-size: 2rem;
+            }
+            
+            .savings-amount {
+                font-size: 3rem;
+            }
+            
+            .discount-amount {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <h1>Carolina Tire</h1>
+            </div>
+            <p>Special Offers & Savings</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section class="offers-hero">
+            <div class="container">
+                <h1>Special Offers & Coupons</h1>
+                <p>Save big on tires and auto services with our exclusive deals!</p>
+            </div>
+        </section>
+
+        <div class="offers-container">
+            <!-- Featured Offer -->
+            <div class="featured-offer">
+                <h2>🎉 Limited Time Offer!</h2>
+                <p class="savings-amount">$100 OFF</p>
+                <p style="font-size: 1.3rem; color: #333;">Any Set of 4 New Tires</p>
+                <p style="color: #666;">Plus FREE installation!</p>
+                <div class="offer-actions" style="justify-content: center; margin-top: 2rem;">
+                    <a href="tire-finder.html" class="offer-button primary" style="max-width: 250px;">Find Your Tires</a>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">*Valid on tire purchases of $400 or more. Cannot be combined with other offers.</p>
+            </div>
+
+            <!-- Promo Banner -->
+            <div class="promo-banner">
+                <h3>📱 Book Online & Save!</h3>
+                <p>Get an automatic 10% discount when you schedule service online</p>
+                <a href="schedule.html" class="cta-button" style="background: white; color: #e74c3c; margin-top: 1rem; display: inline-block; padding: 0.75rem 2rem;">Schedule Now</a>
+            </div>
+
+            <!-- Offers Grid -->
+            <h2 style="text-align: center; margin-bottom: 2rem;">Current Promotions</h2>
+            <div class="offers-grid">
+                <!-- Oil Change Special -->
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-type">Service Special</div>
+                        <h3 class="offer-title">Oil Change Special</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">$29.99</div>
+                            <div class="discount-text">Conventional Oil Change</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>Up to 5 quarts of oil</li>
+                            <li>New oil filter</li>
+                            <li>Multi-point inspection</li>
+                            <li>Tire pressure check</li>
+                            <li>Fluid top-off</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Use code at checkout:</div>
+                            <div class="code-value">OIL2999</div>
+                            <button class="copy-button" onclick="copyCode('OIL2999', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="schedule.html" class="offer-button primary">Book Now</a>
+                        </div>
+                        <div class="expiration">Expires: December 31, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Brake Service Discount -->
+                <div class="offer-card">
+                    <div class="offer-header premium">
+                        <div class="offer-type">Premium Savings</div>
+                        <h3 class="offer-title">Brake Service Discount</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">$50 OFF</div>
+                            <div class="discount-text">Complete Brake Service</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>Front or rear brake pads</li>
+                            <li>Rotor resurfacing</li>
+                            <li>Brake fluid check</li>
+                            <li>12-month warranty</li>
+                            <li>Free brake inspection</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Use code at checkout:</div>
+                            <div class="code-value">BRAKE50</div>
+                            <button class="copy-button" onclick="copyCode('BRAKE50', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="schedule.html" class="offer-button primary">Schedule Service</a>
+                        </div>
+                        <div class="expiration">Expires: November 30, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Alignment Special -->
+                <div class="offer-card">
+                    <div class="offer-header seasonal">
+                        <div class="offer-type">Seasonal Special</div>
+                        <h3 class="offer-title">Wheel Alignment Deal</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">$69.99</div>
+                            <div class="discount-text">4-Wheel Alignment</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>Computerized alignment</li>
+                            <li>Adjustment to specs</li>
+                            <li>Alignment report</li>
+                            <li>6-month warranty</li>
+                            <li>Tire wear inspection</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Use code at checkout:</div>
+                            <div class="code-value">ALIGN69</div>
+                            <button class="copy-button" onclick="copyCode('ALIGN69', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="schedule.html" class="offer-button primary">Book Alignment</a>
+                        </div>
+                        <div class="expiration">Expires: October 31, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Free Tire Rotation -->
+                <div class="offer-card">
+                    <div class="offer-header">
+                        <div class="offer-type">Loyalty Reward</div>
+                        <h3 class="offer-title">Free Tire Rotation</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">FREE</div>
+                            <div class="discount-text">With Any Service</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>Professional tire rotation</li>
+                            <li>Tire pressure adjustment</li>
+                            <li>Visual tire inspection</li>
+                            <li>Tread depth check</li>
+                            <li>No appointment needed</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Use code at checkout:</div>
+                            <div class="code-value">ROTATE0</div>
+                            <button class="copy-button" onclick="copyCode('ROTATE0', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="schedule.html" class="offer-button primary">Schedule Now</a>
+                        </div>
+                        <div class="expiration">No expiration</div>
+                    </div>
+                </div>
+
+                <!-- A/C Service -->
+                <div class="offer-card">
+                    <div class="offer-header seasonal">
+                        <div class="offer-type">Summer Special</div>
+                        <h3 class="offer-title">A/C Service Package</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">$89.99</div>
+                            <div class="discount-text">Complete A/C Service</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>A/C system inspection</li>
+                            <li>Refrigerant recharge</li>
+                            <li>Leak detection</li>
+                            <li>Cabin filter check</li>
+                            <li>Performance test</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Use code at checkout:</div>
+                            <div class="code-value">COOL89</div>
+                            <button class="copy-button" onclick="copyCode('COOL89', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="schedule.html" class="offer-button primary">Stay Cool</a>
+                        </div>
+                        <div class="expiration">Expires: September 30, 2025</div>
+                    </div>
+                </div>
+
+                <!-- Fleet Discount -->
+                <div class="offer-card">
+                    <div class="offer-header premium">
+                        <div class="offer-type">Business Special</div>
+                        <h3 class="offer-title">Fleet Service Discount</h3>
+                    </div>
+                    <div class="offer-body">
+                        <div class="offer-discount">
+                            <div class="discount-amount">15% OFF</div>
+                            <div class="discount-text">All Fleet Services</div>
+                        </div>
+                        <ul class="offer-details">
+                            <li>5+ vehicle fleets</li>
+                            <li>Priority scheduling</li>
+                            <li>Volume pricing</li>
+                            <li>Monthly billing</li>
+                            <li>Dedicated support</li>
+                        </ul>
+                        <div class="offer-code">
+                            <div class="code-label">Contact us for details:</div>
+                            <div class="code-value">FLEET15</div>
+                            <button class="copy-button" onclick="copyCode('FLEET15', this)">Copy Code</button>
+                        </div>
+                        <div class="offer-actions">
+                            <a href="contact.html" class="offer-button primary">Contact Us</a>
+                        </div>
+                        <div class="expiration">Ongoing program</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loyalty Program -->
+            <div class="loyalty-section">
+                <div class="loyalty-header">
+                    <h2>Carolina Tire Rewards Program</h2>
+                    <p>Join our loyalty program and save on every visit!</p>
+                </div>
+                <div class="loyalty-tiers">
+                    <div class="tier-card">
+                        <div class="tier-icon">🥉</div>
+                        <h3 class="tier-name">Bronze</h3>
+                        <p class="tier-benefits">
+                            Sign up and get:<br>
+                            • 5% off all services<br>
+                            • Birthday month discount<br>
+                            • Email exclusive offers
+                        </p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-icon">🥈</div>
+                        <h3 class="tier-name">Silver</h3>
+                        <p class="tier-benefits">
+                            After $500 in services:<br>
+                            • 10% off all services<br>
+                            • Free tire rotations<br>
+                            • Priority scheduling
+                        </p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-icon">🥇</div>
+                        <h3 class="tier-name">Gold</h3>
+                        <p class="tier-benefits">
+                            After $1000 in services:<br>
+                            • 15% off all services<br>
+                            • Free alignments<br>
+                            • VIP treatment
+                        </p>
+                    </div>
+                    <div class="tier-card">
+                        <div class="tier-icon">💎</div>
+                        <h3 class="tier-name">Platinum</h3>
+                        <p class="tier-benefits">
+                            After $2000 in services:<br>
+                            • 20% off all services<br>
+                            • Complimentary services<br>
+                            • Exclusive benefits
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms Section -->
+            <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin-top: 3rem;">
+                <h3 style="color: #2c3e50; margin-bottom: 1rem;">Terms & Conditions</h3>
+                <ul style="color: #666; line-height: 1.8;">
+                    <li>Offers valid at participating locations only</li>
+                    <li>Cannot be combined with other discounts or promotions unless specified</li>
+                    <li>Online booking discount applied automatically at checkout</li>
+                    <li>Prices may vary by location and vehicle type</li>
+                    <li>Additional parts and labor may be required at extra cost</li>
+                    <li>Offers subject to change without notice</li>
+                    <li>See store for complete details</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background-color: #343a40; color: #ffffff; padding: 3rem 1rem; text-align: center;">
+        <div class="footer-cta">
+            <h2>Ready to Save?</h2>
+            <p>Book your service online and start saving today!</p>
+            <a href="schedule.html" class="cta-button">Schedule Service</a>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 Carolina Tire. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function copyCode(code, button) {
+            // Create temporary input element
+            const tempInput = document.createElement('input');
+            tempInput.value = code;
+            document.body.appendChild(tempInput);
+            
+            // Select and copy the text
+            tempInput.select();
+            document.execCommand('copy');
+            
+            // Remove temporary element
+            document.body.removeChild(tempInput);
+            
+            // Update button text
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            button.classList.add('copied');
+            
+            // Reset after 2 seconds
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('copied');
+            }, 2000);
+        }
+
+        // Add countdown timer for featured offer
+        function updateCountdown() {
+            const endDate = new Date('2025-12-31T23:59:59');
+            const now = new Date();
+            const timeLeft = endDate - now;
+            
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                
+                // You could display this countdown in the featured offer
+                console.log(`Offer ends in: ${days} days, ${hours} hours, ${minutes} minutes`);
+            }
+        }
+
+        // Update countdown every minute
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+    <script src="icons.js"></script>
+</body>
+</html>

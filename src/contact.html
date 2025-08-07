@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Carolina Tire | Get in Touch</title>
+    <meta name="description" content="Contact Carolina Tire for mobile tire service, auto repairs, or general inquiries. Multiple locations across SC, TN, and NC. Available 24/7 for emergencies.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <h1>Carolina Tire</h1>
+            </div>
+            <p>Your Direct Line to Expert Tire & Auto Service</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="offers.html">Offers</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section id="contact-hero">
+            <div class="contact-hero-content">
+                <h2>Get in Touch</h2>
+                <p>We're here to help with all your tire and automotive needs</p>
+            </div>
+        </section>
+
+        <section id="contact-options">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card emergency">
+                        <div class="card-header">
+                            <span class="icon">🚨</span>
+                            <h3>Emergency Service</h3>
+                        </div>
+                        <p>Need immediate roadside assistance? Our mobile units are standing by.</p>
+                        <div class="emergency-numbers">
+                            <a href="tel:843-613-1614" class="emergency-btn charleston">
+                                <span>Charleston</span>
+                                <strong>(843) 613-1614</strong>
+                            </a>
+                            <a href="tel:865-333-5454" class="emergency-btn knoxville">
+                                <span>Knoxville</span>
+                                <strong>(865) 333-5454</strong>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card locations">
+                        <div class="card-header">
+                            <span class="icon">📍</span>
+                            <h3>All Locations</h3>
+                        </div>
+                        <div class="location-list">
+                            <div class="location-item">
+                                <h4>Charleston Mobile Tire</h4>
+                                <p>1971 Maybank Hwy, Charleston, SC</p>
+                                <a href="tel:843-613-1614">(843) 613-1614</a>
+                            </div>
+                            <div class="location-item">
+                                <h4>Knoxville Mobile Tire</h4>
+                                <p>113 Walker Springs Rd, Knoxville, TN</p>
+                                <a href="tel:865-333-5454">(865) 333-5454</a>
+                            </div>
+                            <div class="location-item">
+                                <h4>Affordable Tire Co</h4>
+                                <p>Powell & Lenoir City, TN</p>
+                                <a href="tel:865-973-1318">(865) 973-1318</a>
+                            </div>
+                            <div class="location-item">
+                                <h4>Carolina Tire & Service</h4>
+                                <p>1525 N Wesleyan Blvd, Rocky Mount, NC</p>
+                                <a href="tel:252-977-7880">(252) 977-7880</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-form-section">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="form-header">
+                        <h2>Send Us a Message</h2>
+                        <p>Have a question or need to schedule service? Fill out the form below and we'll get back to you within one business day.</p>
+                    </div>
+                    
+                    <form class="modern-contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Select Location *</label>
+                                <select id="location" name="location" required>
+                                    <option value="">Choose a location...</option>
+                                    <optgroup label="Mobile Services">
+                                        <option value="charleston">Charleston, SC - Mobile</option>
+                                        <option value="knoxville">Knoxville, TN - Mobile</option>
+                                    </optgroup>
+                                    <optgroup label="Shop Locations">
+                                        <option value="powell">Powell, TN - Shop</option>
+                                        <option value="lenoir-city">Lenoir City, TN - Shop</option>
+                                        <option value="rocky-mount">Rocky Mount, NC - Shop</option>
+                                    </optgroup>
+                                    <option value="headquarters">Corporate/General Inquiry</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Needed</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option value="mobile-install">Mobile Tire Installation</option>
+                                <option value="mobile-repair">Mobile Tire Repair</option>
+                                <option value="emergency">Emergency Roadside</option>
+                                <option value="tire-sales">Tire Sales</option>
+                                <option value="alignment">Wheel Alignment</option>
+                                <option value="brakes">Brake Service</option>
+                                <option value="oil-change">Oil Change</option>
+                                <option value="general">General Auto Repair</option>
+                                <option value="partnership">Business Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Your Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" name="newsletter" value="yes">
+                                <span>Send me tips and special offers</span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <span>Send Message</span>
+                                <span class="arrow">→</span>
+                            </button>
+                            <p class="form-note">* Required fields</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="location-finder">
+            <div class="container">
+                <h2>Find Your Nearest Location</h2>
+                <div class="finder-wrapper">
+                    <div class="finder-controls">
+                        <div class="search-box">
+                            <input type="text" id="zipSearch" placeholder="Enter ZIP code or city...">
+                            <button id="searchBtn" class="search-btn">
+                                <span>🔍</span> Find Locations
+                            </button>
+                        </div>
+                        <button id="useLocation" class="location-btn">
+                            <span>📍</span> Use My Location
+                        </button>
+                    </div>
+                    
+                    <div id="map-container">
+                        <div id="map" style="height: 500px; background: #e9ecef; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: #7f8c8d;">
+                            <div style="text-align: center;">
+                                <span style="font-size: 3rem;">🗺️</span>
+                                <p>Interactive map will load here</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-results" id="locationResults">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="business-hours">
+            <div class="container">
+                <h2>Business Hours</h2>
+                <div class="hours-grid">
+                    <div class="hours-card">
+                        <h3>Mobile Services</h3>
+                        <p class="subtitle">Charleston & Knoxville</p>
+                        <div class="hours-list">
+                            <div class="hours-row">
+                                <span>Regular Hours</span>
+                                <span>9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Emergency Service</span>
+                                <span>24/7 Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hours-card">
+                        <h3>Shop Locations</h3>
+                        <p class="subtitle">Powell, Lenoir City, Rocky Mount</p>
+                        <div class="hours-list">
+                            <div class="hours-row">
+                                <span>Monday - Friday</span>
+                                <span>8:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Saturday</span>
+                                <span>8:00 AM - 2:00 PM</span>
+                            </div>
+                            <div class="hours-row">
+                                <span>Sunday</span>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background-color: #343a40; color: #ffffff; padding: 3rem 1rem; text-align: center;">
+        <div class="footer-cta">
+            <h2>Ready to Connect?</h2>
+            <p>We're standing by to help with all your tire and automotive needs</p>
+            <a href="#contact-form-section" class="cta-button">Contact Us Now</a>
+        </div>
+        <p style="margin-top: 2rem;">&copy; 2025 Carolina Tire. All rights reserved. | Your Trusted Partner for Decades</p>
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script src="map.js"></script>
+    <script src="contact.js"></script>
+    <script src="icons.js"></script>
+</body>
+</html>

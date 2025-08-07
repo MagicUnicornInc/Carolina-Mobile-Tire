@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tire Finder | Find the Right Tires for Your Vehicle | Carolina Tire</title>
+    <meta name="description" content="Use our tire finder tool to find the perfect tires for your vehicle. Enter your vehicle make, model, and year or tire size to get recommendations.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tire-finder-hero {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.95) 0%, rgba(41, 128, 185, 0.95) 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .finder-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .finder-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #2c3e50;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+            border-color: #3498db;
+        }
+
+        .tab-button.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .finder-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .tire-size-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .size-helper {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .size-helper h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .size-helper p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .find-button {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .find-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .results-section {
+            display: none;
+        }
+
+        .results-section.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-header h2 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .vehicle-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .tire-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tire-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tire-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .tire-image {
+            height: 200px;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #dee2e6;
+        }
+
+        .tire-details {
+            padding: 1.5rem;
+        }
+
+        .tire-brand {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.25rem;
+        }
+
+        .tire-model {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .tire-type {
+            color: #3498db;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .tire-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+
+        .tire-features li {
+            padding: 0.25rem 0;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .tire-features li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .tire-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .price-note {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        .tire-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tire-button {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .tire-button.primary {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .tire-button.primary:hover {
+            background: #c0392b;
+        }
+
+        .tire-button.secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .tire-button.secondary:hover {
+            background: #bdc3c7;
+        }
+
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .form-row,
+            .tire-size-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .finder-tabs {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .tab-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🚗</span>
+                <h1>Carolina Tire</h1>
+            </div>
+            <p>Find the Perfect Tires for Your Vehicle</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="offers.html">Offers</a>
+        <a href="schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="index.html#locations">Locations</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <main>
+        <section class="tire-finder-hero">
+            <div class="container">
+                <h1>Tire Finder Tool</h1>
+                <p>Find the right tires for your vehicle in seconds</p>
+            </div>
+        </section>
+
+        <div class="finder-container">
+            <div class="finder-tabs">
+                <button class="tab-button active" onclick="switchTab('vehicle')">Search by Vehicle</button>
+                <button class="tab-button" onclick="switchTab('size')">Search by Tire Size</button>
+            </div>
+
+            <!-- Search by Vehicle Tab -->
+            <div id="vehicle-tab" class="tab-content active">
+                <form class="finder-form" id="vehicleForm">
+                    <h2>Enter Your Vehicle Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select id="year" name="year" required>
+                                <option value="">Select Year</option>
+                                <option value="2025">2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="make">Make</label>
+                            <select id="make" name="make" required disabled>
+                                <option value="">Select Make</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <select id="model" name="model" required disabled>
+                                <option value="">Select Model</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="trim">Trim (Optional)</label>
+                        <select id="trim" name="trim" disabled>
+                            <option value="">Select Trim</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="find-button">Find My Tires</button>
+                </form>
+            </div>
+
+            <!-- Search by Size Tab -->
+            <div id="size-tab" class="tab-content">
+                <form class="finder-form" id="sizeForm">
+                    <h2>Enter Your Tire Size</h2>
+                    <div class="size-helper">
+                        <h4>Where to find your tire size?</h4>
+                        <p>Look on the sidewall of your current tires. You'll see something like: <strong>225/65R17</strong></p>
+                    </div>
+                    <div class="tire-size-inputs">
+                        <div class="form-group">
+                            <label for="width">Width</label>
+                            <input type="number" id="width" name="width" placeholder="225" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="aspect">Aspect Ratio</label>
+                            <input type="number" id="aspect" name="aspect" placeholder="65" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="diameter">Rim Diameter</label>
+                            <input type="number" id="diameter" name="diameter" placeholder="17" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="find-button">Find Tires by Size</button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results" class="results-section">
+                <div class="results-header">
+                    <h2>Recommended Tires for Your Vehicle</h2>
+                    <div class="vehicle-info" id="vehicleInfo"></div>
+                </div>
+                <div class="tire-grid" id="tireGrid">
+                    <!-- Tire cards will be populated here -->
+                </div>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-icon">🚚</div>
+                        <h3>Free Delivery</h3>
+                        <p>Mobile service available in Charleston & Knoxville. We come to you!</p>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-icon">🔧</div>
+                        <h3>Professional Installation</h3>
+                        <p>Expert mounting and balancing included with every tire purchase.</p>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-icon">💰</div>
+                        <h3>Competitive Pricing</h3>
+                        <p>We offer competitive prices on all our tires.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background-color: #343a40; color: #ffffff; padding: 3rem 1rem; text-align: center;">
+        <p>&copy; 2025 Carolina Tire. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Vehicle data
+        const vehicleData = {
+            makes: {
+                'Toyota': ['Camry', 'Corolla', 'RAV4', 'Highlander', 'Tacoma', 'Tundra', '4Runner', 'Prius'],
+                'Honda': ['Accord', 'Civic', 'CR-V', 'Pilot', 'Odyssey', 'Ridgeline', 'HR-V'],
+                'Ford': ['F-150', 'Explorer', 'Escape', 'Edge', 'Mustang', 'Fusion', 'Ranger'],
+                'Chevrolet': ['Silverado', 'Tahoe', 'Equinox', 'Traverse', 'Malibu', 'Colorado', 'Camaro'],
+                'Nissan': ['Altima', 'Sentra', 'Rogue', 'Pathfinder', 'Frontier', 'Titan', 'Maxima'],
+                'Jeep': ['Wrangler', 'Grand Cherokee', 'Cherokee', 'Compass', 'Renegade', 'Gladiator'],
+                'RAM': ['1500', '2500', '3500', 'ProMaster'],
+                'GMC': ['Sierra', 'Terrain', 'Acadia', 'Yukon', 'Canyon'],
+                'Hyundai': ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisade'],
+                'Kia': ['Optima', 'Forte', 'Sorento', 'Sportage', 'Telluride', 'Soul'],
+                'Mazda': ['CX-5', 'CX-9', 'Mazda3', 'Mazda6', 'CX-30'],
+                'Subaru': ['Outback', 'Crosstrek', 'Forester', 'Ascent', 'Impreza', 'Legacy'],
+                'Volkswagen': ['Jetta', 'Passat', 'Tiguan', 'Atlas', 'Golf'],
+                'BMW': ['3 Series', '5 Series', 'X3', 'X5', 'X1', '7 Series'],
+                'Mercedes-Benz': ['C-Class', 'E-Class', 'GLC', 'GLE', 'A-Class', 'S-Class'],
+                'Audi': ['A4', 'A6', 'Q5', 'Q7', 'A3', 'Q3'],
+                'Lexus': ['RX', 'ES', 'NX', 'GX', 'IS', 'LS']
+            },
+            trims: {
+                'default': ['Base', 'Sport', 'Limited', 'Premium', 'Platinum']
+            }
+        };
+
+        // Tire recommendations database
+        const tireDatabase = [
+            {
+                brand: 'Michelin',
+                model: 'Defender T+H',
+                type: 'All-Season Touring',
+                price: 145,
+                features: ['70,000 mile warranty', 'Excellent wet traction', 'Quiet ride', 'Fuel efficient'],
+                sizes: ['225/65R17', '215/60R16', '235/65R18']
+            },
+            {
+                brand: 'BFGoodrich',
+                model: 'Advantage T/A Sport',
+                type: 'All-Season Performance',
+                price: 125,
+                features: ['60,000 mile warranty', 'Sporty handling', 'Good value', 'Year-round traction'],
+                sizes: ['225/65R17', '215/55R17', '235/60R18']
+            },
+            {
+                brand: 'Yokohama',
+                model: 'Avid Ascend GT',
+                type: 'Grand Touring All-Season',
+                price: 135,
+                features: ['65,000 mile warranty', 'Comfortable ride', 'Low road noise', 'Enhanced stability'],
+                sizes: ['225/65R17', '215/60R16', '235/65R18']
+            },
+            {
+                brand: 'Cooper',
+                model: 'CS5 Grand Touring',
+                type: 'All-Season Touring',
+                price: 115,
+                features: ['80,000 mile warranty', 'Budget friendly', 'Smooth ride', 'Good tread life'],
+                sizes: ['225/65R17', '215/60R16', '235/65R18']
+            },
+            {
+                brand: 'Goodyear',
+                model: 'Assurance WeatherReady',
+                type: 'All-Weather',
+                price: 155,
+                features: ['60,000 mile warranty', 'Severe weather rated', 'Confident handling', 'Year-round performance'],
+                sizes: ['225/65R17', '215/55R17', '235/60R18']
+            },
+            {
+                brand: 'Bridgestone',
+                model: 'Turanza QuietTrack',
+                type: 'Touring All-Season',
+                price: 140,
+                features: ['80,000 mile warranty', 'Ultra quiet', 'Premium comfort', 'Excellent wet performance'],
+                sizes: ['225/65R17', '215/60R16', '235/65R18']
+            }
+        ];
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            if (tab === 'vehicle') {
+                document.querySelector('.tab-button:first-child').classList.add('active');
+                document.getElementById('vehicle-tab').classList.add('active');
+            } else {
+                document.querySelector('.tab-button:last-child').classList.add('active');
+                document.getElementById('size-tab').classList.add('active');
+            }
+            
+            document.getElementById('results').classList.remove('show');
+        }
+
+        // Vehicle form handling
+        const yearSelect = document.getElementById('year');
+        const makeSelect = document.getElementById('make');
+        const modelSelect = document.getElementById('model');
+        const trimSelect = document.getElementById('trim');
+
+        yearSelect.addEventListener('change', function() {
+            if (this.value) {
+                makeSelect.disabled = false;
+                makeSelect.innerHTML = '<option value="">Select Make</option>';
+                Object.keys(vehicleData.makes).forEach(make => {
+                    makeSelect.innerHTML += `<option value="${make}">${make}</option>`;
+                });
+            } else {
+                makeSelect.disabled = true;
+                modelSelect.disabled = true;
+                trimSelect.disabled = true;
+            }
+        });
+
+        makeSelect.addEventListener('change', function() {
+            if (this.value) {
+                modelSelect.disabled = false;
+                modelSelect.innerHTML = '<option value="">Select Model</option>';
+                vehicleData.makes[this.value].forEach(model => {
+                    modelSelect.innerHTML += `<option value="${model}">${model}</option>`;
+                });
+            } else {
+                modelSelect.disabled = true;
+                trimSelect.disabled = true;
+            }
+        });
+
+        modelSelect.addEventListener('change', function() {
+            if (this.value) {
+                trimSelect.disabled = false;
+                trimSelect.innerHTML = '<option value="">Select Trim</option>';
+                vehicleData.trims.default.forEach(trim => {
+                    trimSelect.innerHTML += `<option value="${trim}">${trim}</option>`;
+                });
+            } else {
+                trimSelect.disabled = true;
+            }
+        });
+
+        // Form submissions
+        document.getElementById('vehicleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const year = document.getElementById('year').value;
+            const make = document.getElementById('make').value;
+            const model = document.getElementById('model').value;
+            const trim = document.getElementById('trim').value;
+            
+            const vehicleInfo = `${year} ${make} ${model}${trim ? ' ' + trim : ''}`;
+            showResults(vehicleInfo, 'vehicle');
+        });
+
+        document.getElementById('sizeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const width = document.getElementById('width').value;
+            const aspect = document.getElementById('aspect').value;
+            const diameter = document.getElementById('diameter').value;
+            
+            const size = `${width}/${aspect}R${diameter}`;
+            showResults(size, 'size');
+        });
+
+        // Show results
+        function showResults(info, searchType) {
+            const resultsSection = document.getElementById('results');
+            const vehicleInfo = document.getElementById('vehicleInfo');
+            const tireGrid = document.getElementById('tireGrid');
+            
+            vehicleInfo.textContent = searchType === 'vehicle' ? 
+                `Showing tires for: ${info}` : 
+                `Showing tires in size: ${info}`;
+            
+            // Clear previous results
+            tireGrid.innerHTML = '';
+            
+            // Populate tire cards
+            tireDatabase.forEach(tire => {
+                const card = createTireCard(tire);
+                tireGrid.appendChild(card);
+            });
+            
+            resultsSection.classList.add('show');
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Create tire card
+        function createTireCard(tire) {
+            const card = document.createElement('div');
+            card.className = 'tire-card';
+            
+            card.innerHTML = `
+                <div class="tire-image">🛞</div>
+                <div class="tire-details">
+                    <div class="tire-brand">${tire.brand}</div>
+                    <div class="tire-model">${tire.model}</div>
+                    <div class="tire-type">${tire.type}</div>
+                    <ul class="tire-features">
+                        ${tire.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <div class="tire-price">
+                        <div>
+                            <div class="price">$${tire.price}</div>
+                            <div class="price-note">per tire</div>
+                        </div>
+                    </div>
+                    <div class="tire-actions">
+                        <a href="schedule.html" class="tire-button primary">Schedule Install</a>
+                        <a href="contact.html" class="tire-button secondary">Get Quote</a>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+    </script>
+    <script src="icons.js"></script>
+</body>
+</html>
